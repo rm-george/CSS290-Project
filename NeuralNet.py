@@ -62,7 +62,7 @@ print(label0)
 #model with a softmax making a prediction
 predictions = model(x_test)
 predictions = tf.nn.softmax(predictions)
-pred0 = predictions[0]
+pred0 = predictions[7]
 print(pred0)
 label0 = np.argmax(pred0)
 print(label0)
