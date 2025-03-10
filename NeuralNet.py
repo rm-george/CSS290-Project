@@ -7,6 +7,43 @@ from tensorflow import keras
 import numpy as np
 
 import matplotlib.pyplot as plt
+
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from tensorflow.keras.applications.resnet50 import preprocess_input
+
+# Directory containing images
+directory_path = "\\random\\path"  # Replace with your directory path
+
+images = []
+filenames = []
+
+try:
+    # Get list of files
+    file_list = os.listdir(directory_path)
+
+    # Load each image
+    for filename in file_list:
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            # Construct full file path
+            file_path = os.path.join(directory_path, filename)
+
+            # Load image and convert to array (adjust target_size as needed)
+            img = load_img(file_path, target_size=(224, 224))
+            img_array = img_to_array(img)
+
+            # Store image and filename
+            images.append(img_array)
+            filenames.append(filename)
+
+    # Convert list to numpy array and preprocess
+    images = np.array(images)
+    images = preprocess_input(images)  # Apply appropriate preprocessing
+
+    print(f"Loaded {len(images)} images for processing")
+
+except FileNotFoundError:
+    print("The directory was not found")```
+
 #This is a basic dataset implemented with the tensor flow keras API which is a bunch of photos of handwriting
 mnsit = keras.datasets.mnist
 
