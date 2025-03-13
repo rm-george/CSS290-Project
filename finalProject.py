@@ -9,7 +9,7 @@ from tensorflow.keras.applications.resnet50 import preprocess_input
 
 class ImageProcessor(FileSystemEventHandler):
     def __init__(self, directory_path):
-        # Keep track of processed files
+        # Keep track of processed file
         self.processed_files = set()
 
         # Process existing files first
